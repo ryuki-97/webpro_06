@@ -64,4 +64,26 @@ app.get("/janken", (req, res) => {
   res.render( 'janken', display );
 });
 
+app.get("/639", (req, res) => {
+  const number = req.query.number;
+  const resurt = number * 639;
+  const display = {
+    number : number,
+    resurt : resurt,
+  }
+
+  res.render( '639',display )
+
+});
+
+app.get("/reservation", (req, res) => {
+  const a = req.query.date;
+  const display = {
+    a : a,
+  }
+  res.render( 'reservation',display )
+
+
+});
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

@@ -30,13 +30,14 @@ flowchart TD;
 ```
 
 ## 予約のプログラムについて
+このプログラムはユーザーが入力した個人情報と予約内容を表示するプログラムである．
 ## ファイル一覧
 
 ファイル名|説明
 -|-
 app5.js|プログラム本体
-puclic/reservation.html|予約の開始画面
-views/reservation.ejs|予約の入力後の画面
+puclic/reservation2.html|予約の開始画面
+views/reservation2.ejs|予約の入力後の画面
 
 ##　使用方法
 
@@ -46,15 +47,15 @@ views/reservation.ejs|予約の入力後の画面
     ```
 1. Webブラウザで以下のURLにアクセスする
     ```
-    localhost:8080/public/reservation.html
+    localhost:8080/public/reservation2.html
     ```
-1. 予約したい日付を選択後，送信ボタンを押す
+1. 個人情報と予約内容を選択後，確定ボタンを押す
 
 ## プログラムの機能
 
 ```mermaid
 flowchart TD;
 開始 --> 選択されたデータを文字に変換する;
-選択されたデータを文字に変換する　--> 予約した日付を表示する;
-予約した日付を表示する　--> 終了;
+選択されたデータを文字に変換する　--> 予約した内容を表示する;
+予約した内容を表示する　--> 終了;
 ```

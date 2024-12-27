@@ -86,9 +86,23 @@ app.get("/reservation", (req, res) => {
 });
 
 app.get("/reservation2", (req, res) => {
-  const a = req.query.contents;
+  const sei_ka = req.query.text;
+  const mei_ka = req.query.text1;
+  const sei_na = req.query.text2;
+  const mei_na = req.query.text3;
+  const menyu = req.query.radio;
+  const seinen = req.query.date1;
+  const yoyakubi = req.query.date2;
+  
+
   const display = {
-    value : value,
+    sei_ka : sei_ka,
+    mei_ka : mei_ka,
+    sei_na : sei_na,
+    mei_na : mei_na,
+    menyu : menyu,
+    seinen : seinen,
+    yoyakubi : yoyakubi,
   }
   res.render( 'reservation2',display )
 

@@ -5,8 +5,38 @@
         <title>予約</title>
     </head>
     <body>
-        <p>
-            <%= value %>
-        </p>
+        <h2>予約確認</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>姓（漢字）</th>
+                        <th><%= sei_ka %></th>
+                    </tr>
+                    <tr>
+                        <th>名（漢字）</th>
+                        <th> <%= mei_ka %></th>
+                    </tr>
+                    <tr>
+                        <th>姓（フリガナ）</th>
+                        <th><%= sei_na %></th>
+                    </tr>
+                    <tr>
+                        <th>名（フリガナ）</th>
+                        <th><%= mei_na %></th>
+                    </tr>
+                    <tr>
+                        <th>生年月日</th>
+                        <th><%= seinen %></th>
+                    </tr>
+                    <tr>
+                        <th>メニュー</th>
+                        <th><%= menyu %></th>
+                    </tr>
+                    <tr>
+                        <th>予約日</th>
+                        <th><%= yoyakubi %></th>
+                    </tr>
+                </thead>
+            </table>
     </body>
 </html>

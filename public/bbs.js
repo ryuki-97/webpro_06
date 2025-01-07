@@ -100,6 +100,7 @@ document.querySelector('#delete').addEventListener('click', () => {
             if (!response.ok) {
                 throw new Error('削除失敗');
             }
+            location.reload();
         })
         .catch((error) => {
             console.error('エラー:', error);

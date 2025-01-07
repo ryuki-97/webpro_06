@@ -65,10 +65,16 @@ app.get("/janken", (req, res) => {
 });
 
 app.get("/639", (req, res) => {
-  const number = req.query.number;
-  const resurt = number * 639;
+  const number1 = req.query.number1;
+  const number2 = req.query.number2;
+  const num1 = Number(number1);
+  const num2 = Number(number2);
+  const resurt = num1 * num2;
   const display = {
-    number : number,
+    number1 : number1,
+    number2 : number2,
+    num1 : num1,
+    num2 : num2,
     resurt : resurt,
   }
 

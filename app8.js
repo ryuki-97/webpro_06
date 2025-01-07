@@ -130,4 +130,10 @@ app.delete("/bbs/:id", (req,res) => {
     res.json( {test: "DELETE /BBS/" + req.params.id });
 });
 
+app.delete("/bbs", (req, res) => {
+  console.log("DELETE /BBS" + req.params.id);
+  bbs = [];
+  res.json( {test: "DELETE /BBS/" + req.params.id });
+});
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

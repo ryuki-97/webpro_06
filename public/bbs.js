@@ -86,3 +86,22 @@ document.querySelector('#check').addEventListener('click', () => {
         }
     });
 });
+
+document.querySelector('#delete').addEventListener('click', () => {
+    const params = {
+        method: "DELETE", // DELETEリクエストを送信
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    };
+    const url = "/bbs";
+    fetch(url, params)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('削除失敗');
+            }
+        })
+        .catch((error) => {
+            console.error('エラー:', error);
+        });
+});

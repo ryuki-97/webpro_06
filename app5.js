@@ -143,4 +143,14 @@ app.get("/keiyo_add", (req, res) => {
   res.redirect('/public/keiyo_add.html');
 });
 
+let basket = []
+
+app.get("/basket", (req, res) => {
+  let team = req.query.team;
+  let uninum = req.query.uninum;
+  let name = req.query.name;
+  let newdata = { team: team, uninum: uninum, name: name };
+  basket.push( newdata );
+  res.render('basket', { data: basket });
+});
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

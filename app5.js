@@ -18,30 +18,36 @@ app.get("/icon", (req, res) => {
   res.render('icon', { filename:"./public/Apple_logo_black.svg", alt:"Apple Logo"});
 });
 
-app.get("/luck", (req, res) => {
+app.get("/omikuji1", (req, res) => {
   const num = Math.floor( Math.random() * 6 + 1 );
   let luck = '';
   if( num==1 ) luck = '大吉';
   else if( num==2 ) luck = '中吉';
-  console.log( 'あなたの運勢は' + luck + 'です' );
-  res.render( 'luck', {number:num, luck:luck} );
+
+  res.send( '今日の運勢は' + luck + 'です' );
+});
+
+app.get("/omikuji2", (req, res) => {
+  const num = Math.floor( Math.random() * 6 + 1 );
+  let luck = '';
+  if( num==1 ) luck = '大吉';
+  else if( num==2 ) luck = '中吉';
+
+  res.render( 'omikuji2', {result:luck} );
 });
 
 app.get("/janken", (req, res) => {
   let hand = req.query.hand;
-  let win = Number( req.query.win ) || 0;
-  let total = Number( req.query.total ) || 0;
+  let win = Number( req.query.win );
+  let total = Number( req.query.total );
   console.log( {hand, win, total});
   const num = Math.floor( Math.random() * 3 + 1 );
   let cpu = '';
+  let judgement = '';
   if( num==1 ) cpu = 'グー';
   else if( num==2 ) cpu = 'チョキ';
   else cpu = 'パー';
   // ここに勝敗の判定を入れる
-  // 今はダミーで人間の勝ちにしておく
-  //let judgement = '勝ち';
-  //win += 1;
-  //total += 1;
   if ((hand === 'グー' && cpu === 'チョキ') ||
       (hand === 'チョキ' && cpu === 'パー') ||
       (hand === 'パー' && cpu === 'グー')) {
@@ -52,8 +58,11 @@ app.get("/janken", (req, res) => {
   } else {
     judgement = '負け'; // 負けの場合
   }
+  // 以下の数行は人間の勝ちの場合の処理なので，
+  // 判定に沿ってあいこと負けの処理を追加する
+  // judgement = '勝ち';
+  // win += 1;
   total += 1;
-
   const display = {
     your: hand,
     cpu: cpu,
@@ -64,54 +73,46 @@ app.get("/janken", (req, res) => {
   res.render( 'janken', display );
 });
 
-app.get("/639", (req, res) => {
-  const number1 = req.query.number1;
-  const number2 = req.query.number2;
-  const num1 = Number(number1);
-  const num2 = Number(number2);
-  const resurt = num1 * num2;
-  const display = {
-    number1 : number1,
-    number2 : number2,
-    num1 : num1,
-    num2 : num2,
-    resurt : resurt,
+app.get("/janken2", (req, res) => {
+  const value = req.query.radio;
+  let win = Number( req.query.win );
+  let total = Number( req.query.total );
+  console.log( {value, win, total});
+  const num = Math.floor( Math.random() * 3 + 1 );
+  let cpu = '';
+  let judgement = '';
+  if( num==1 ) cpu = 'グー';
+  else if( num==2 ) cpu = 'チョキ';
+  else cpu = 'パー';
+  let hand = '';
+  if( value === "1" ) hand = 'グー';
+  else if( value === "2" ) hand = 'チョキ';
+  else hand = 'パー';
+  // ここに勝敗の判定を入れる
+  if ((hand === 'グー' && cpu === 'チョキ') ||
+      (hand === 'チョキ' && cpu === 'パー') ||
+      (hand === 'パー' && cpu === 'グー')) {
+    judgement = '勝ち';
+    win += 1; // 勝った場合は勝ち数を増やす
+  } else if (hand === cpu) {
+    judgement = 'あいこ'; // あいこの場合
+  } else {
+    judgement = '負け'; // 負けの場合
   }
-
-  res.render( '639',display )
-
-});
-
-app.get("/reservation", (req, res) => {
-  const a = req.query.date;
+  // 以下の数行は人間の勝ちの場合の処理なので，
+  // 判定に沿ってあいこと負けの処理を追加する
+  // judgement = '勝ち';
+  // win += 1;
+  total += 1;
   const display = {
-    a : a,
+    radio:value,
+    your: hand,
+    cpu: cpu,
+    judgement: judgement,
+    win: win,
+    total: total
   }
-  res.render( 'reservation',display )
-
-});
-
-app.get("/reservation2", (req, res) => {
-  const sei_ka = req.query.text;
-  const mei_ka = req.query.text1;
-  const sei_na = req.query.text2;
-  const mei_na = req.query.text3;
-  const menyu = req.query.radio;
-  const seinen = req.query.date1;
-  const yoyakubi = req.query.date2;
-  
-
-  const display = {
-    sei_ka : sei_ka,
-    mei_ka : mei_ka,
-    sei_na : sei_na,
-    mei_na : mei_na,
-    menyu : menyu,
-    seinen : seinen,
-    yoyakubi : yoyakubi,
-  }
-  res.render( 'reservation2',display )
-
+  res.render( 'janken2', display );
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

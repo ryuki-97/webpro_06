@@ -214,7 +214,15 @@ app.get("/keiyo2/delete/:number", (req, res) => {
   // 本来は削除する番号が存在するか厳重にチェックする
   // 本来ならここにDBとのやり取りが入る
   // station2.splice( req.params.number, 1 );
-  res.render('keiyo2_delete' );
+  const index = Number(req.params.number);
+  const detail = station2[index];
+  res.render("keiyo2_delete", { id: index, data: detail });
+});
+
+app.post("/keiyo2/delete/:number", (req, res) => {
+  const index = Number(req.params.number);
+  station2.splice(index, 1); // 配列から削除
+  res.redirect("/keiyo2"); // 一覧へ
 });
 
 // Create

@@ -1,0 +1,22 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>削除確認</title>
+</head>
+<body>
+  <h2><%= data.name %>の削除</h2>
+  <form action="/basket2/delete/<%= id %>" method="POST">
+    <table>
+      <tr><th>項目</th><th>データ</th></tr>
+      <tr><td>ID</td><td><%= data.id %></td></tr>
+      <tr><td>チーム名</td><td><%= data.team %></td></tr>
+      <tr><td>背番号</td><td><%= data.uninum %><td></tr>
+      <tr><td>ポジション</td><td><%= data.position %></td></tr>
+      <tr><td>最年月日</td><td><%= data.birthday %></td></tr>
+    </table>
+    <a>削除しますか？</a><input type="submit" value="はい">
+  </form>
+  <a href="/basket2/">選手一覧に戻る</a>
+</body>
+</html>

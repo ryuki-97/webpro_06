@@ -1,0 +1,22 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= data.name %></title>
+</head>
+<body>
+  <h2><%= data.name %>の編集</h2>
+  <form action="/basket2/update/<%= data.id - 1 %>" method="POST">
+    <table>
+      <tr><th>項目</th><th>データ</th></tr>
+      <tr><td>ID</td><td><input type="text" name="code" value="<%= data.id %>"></td></tr>
+      <tr><td>選手名</td><td><input type="text" name="name" value="<%= data.name %>"></td></tr>
+      <tr><td>背番号</td><td><input type="number" name="uninum" value="<%= data.uninum %>"></td></tr>
+      <tr><td>ポジション</td><td><input type="text" name="position" value="<%= data.position %>"></td></tr>
+      <tr><td>生年月日</td><td><input type="date" name="birthday" value="<%= data.birthday %>"></td></tr>
+    </table>
+    <input type="submit" value="登録">
+  </form>
+  <a href="/basket2/">選手一覧に戻る</a>
+</body>
+</html>

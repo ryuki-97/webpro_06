@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>選手を追加する</title>
+</head>
+<body>
+    <form action="/basket2" method="POST">
+        <label for="team">チーム名：</label>
+        <input type="text" name="team" required><br>
+        <label for="name">選手名：</label>
+        <input type="text" name="name" required><br>        
+        <label for="uninum">背番号：</label>
+        <input type="number" name="uninum" required><br>
+        <label for="position">ポジション：</label>
+        <input type="text" name="position" required><br>
+        <label for="birthday">生年月日</label>
+        <input type="date" name="birthday" required><br>
+        <input type="submit" value="登録">
+    </form>
+</body>
+</html>

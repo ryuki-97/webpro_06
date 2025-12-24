@@ -156,22 +156,22 @@ app.get("/task/edit/:number", (req, res) => {
 app.post("/task/update/:number", (req, res) => {
   // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
   // 本来ならここにDBとのやり取りが入る
-  basket2[req.params.number].subject = req.body.subject;
-  basket2[req.params.number].name = req.body.name;
-  basket2[req.params.number].limit = req.body.limit;
-  basket2[req.params.number].method = req.body.method;
-  basket2[req.params.number].situation = req.body.situation;
+  task[req.params.number].subject = req.body.subject;
+  task[req.params.number].name = req.body.name;
+  task[req.params.number].limit = req.body.limit;
+  task[req.params.number].method = req.body.method;
+  task[req.params.number].situation = req.body.situation;
   console.log( task );
   res.redirect('/task' );
 });
 app.post("/task/update/:number", (req, res) => {
   // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
   // 本来ならここにDBとのやり取りが入る
-  basket2[req.params.number].subject = req.body.subject;
-  basket2[req.params.number].name = req.body.name;
-  basket2[req.params.number].limit = req.body.limit;
-  basket2[req.params.number].method = req.body.method;
-  basket2[req.params.number].situation = req.body.situation;
+  task[req.params.number].subject = req.body.subject;
+  task[req.params.number].name = req.body.name;
+  task[req.params.number].limit = req.body.limit;
+  task[req.params.number].method = req.body.method;
+  task[req.params.number].situation = req.body.situation;
   console.log( task );
   res.redirect('/task' );
 });

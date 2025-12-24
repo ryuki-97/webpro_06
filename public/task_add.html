@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>課題を追加する</title>
+</head>
+<body>
+    <form action="/task" method="POST">
+        <label for="subject">科目：</label>
+        <input type="text" name="subject" required><br>
+        <label for="name">名前：</label>
+        <input type="text" name="name" required><br>
+        <label for="limit">期限：</label>
+        <input type="date" name="limit" required><br>        
+        <label for="method">提出方法：</label>
+        <input type="text" name="method" required><br>
+        <label for="situation">状態：</label>
+        <input type="radio" name="situation" id="radio1" value="提出済み" required>
+        <label for="radio1">提出済み</label><br>
+        <input type="radio" name="situation" id="radio2" value="未提出" required>
+        <label for="radio2">未提出</label><br>
+        <input type="submit" value="登録">
+    </form>
+</body>
+</html>

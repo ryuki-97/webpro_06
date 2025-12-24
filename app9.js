@@ -8,7 +8,10 @@ app.use("/public", express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
 
 let basket2 = [];
+let task = [];
+let anime = [];
 
+// バスケ選手名簿
 // 一覧
 app.get("/basket2", (req, res) => {
   // 本来ならここにDBとのやり取りが入る
@@ -89,6 +92,88 @@ app.post("/basket2/delete/:number", (req, res) => {
   basket2[req.params.number].birthday = req.body.birthday;
   console.log( basket2 );
   res.redirect('/basket2' );
+});
+
+// 課題管理
+// 一覧
+app.get("/task", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  res.render('task', {data: task} );
+});
+
+// Create
+app.get("/task/create", (req, res) => {
+  res.redirect('/public/task_add.html');
+});
+
+// Read
+app.get("/task/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = Number(req.params.number);
+  const detail = task[ number ];
+  res.render('task_detail', {id: number, data: detail} );
+});
+
+// Delete
+app.get("/task/delete/:number", (req, res) => {
+  // 本来は削除の確認ページを表示する
+  // 本来は削除する番号が存在するか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  const index = Number(req.params.number);
+  const detail = task[index];
+  res.render("task_delete", { id: index, data: detail });
+});
+
+app.post("/task/delete/:number", (req, res) => {
+  const index = Number(req.params.number);
+  task.splice(index, 1); // 配列から削除
+  res.redirect("/task"); // 一覧へ
+});
+
+// Create
+app.post("/task", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const id = task.length + 1;
+  const subject = req.body.subject;
+  const name = req.body.name;
+  const limit = req.body.limit;
+  const method = req.body.method;
+  const situation = req.body.situation;
+  task.push( { id: id, subject: subject, name: name, limit: limit, method: method, situation: situation } );
+  console.log( task );
+  res.render('task', {data: task} );
+});
+
+// Edit
+app.get("/task/edit/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = task[ number ];
+  res.render('task_edit', {id: number, data: detail} );
+});
+
+// Update
+app.post("/task/update/:number", (req, res) => {
+  // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  basket2[req.params.number].subject = req.body.subject;
+  basket2[req.params.number].name = req.body.name;
+  basket2[req.params.number].limit = req.body.limit;
+  basket2[req.params.number].method = req.body.method;
+  basket2[req.params.number].situation = req.body.situation;
+  console.log( task );
+  res.redirect('/task' );
+});
+app.post("/task/update/:number", (req, res) => {
+  // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  basket2[req.params.number].subject = req.body.subject;
+  basket2[req.params.number].name = req.body.name;
+  basket2[req.params.number].limit = req.body.limit;
+  basket2[req.params.number].method = req.body.method;
+  basket2[req.params.number].situation = req.body.situation;
+  console.log( task );
+  res.redirect('/task' );
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

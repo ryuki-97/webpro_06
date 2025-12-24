@@ -1,0 +1,22 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= data.name %></title>
+</head>
+<body>
+  <h2><%= data.name %>の編集</h2>
+  <form action="/task/update/<%= data.id - 1 %>" method="POST">
+    <table>
+      <tr><th>項目</th><th>データ</th></tr>
+      <tr><td>ID</td><td><input type="text" name="code" value="<%= data.id %>"></td></tr>
+      <tr><td>課題名</td><td><input type="text" name="name" value="<%= data.name %>"></td></tr>
+      <tr><td>科目</td><td><input type="text" name="subject" value="<%= data.subject %>"></td></tr>
+      <tr><td>提出方法</td><td><input type="text" name="method" value="<%= data.method %>"></td></tr>
+      <tr><td>期限</td><td><input type="date" name="limit" value="<%= data.limit %>"></td></tr>
+    </table>
+    <input type="submit" value="登録">
+  </form>
+  <a href="/task/">課題一覧に戻る</a>
+</body>
+</html>

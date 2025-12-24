@@ -88,7 +88,7 @@ app.post("/basket2/delete/:number", (req, res) => {
   basket2[req.params.number].team = req.body.team;
   basket2[req.params.number].name = req.body.name;
   basket2[req.params.number].uninum = req.body.uninum;
-  basket2[req.params.number].params = req.body.position;
+  basket2[req.params.number].position = req.body.position;
   basket2[req.params.number].birthday = req.body.birthday;
   console.log( basket2 );
   res.redirect('/basket2' );

@@ -164,7 +164,7 @@ app.post("/task/update/:number", (req, res) => {
   console.log( task );
   res.redirect('/task' );
 });
-app.post("/task/update/:number", (req, res) => {
+app.post("/task/delete/:number", (req, res) => {
   // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
   // 本来ならここにDBとのやり取りが入る
   task[req.params.number].subject = req.body.subject;
@@ -174,6 +174,88 @@ app.post("/task/update/:number", (req, res) => {
   task[req.params.number].situation = req.body.situation;
   console.log( task );
   res.redirect('/task' );
+});
+
+// アニメ管理
+// 一覧
+app.get("/anime", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  res.render('anime', {data: anime} );
+});
+
+// Create
+app.get("/anime/create", (req, res) => {
+  res.redirect('/public/anime_add.html');
+});
+
+// Read
+app.get("/anime/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = Number(req.params.number);
+  const detail = anime[ number ];
+  res.render('anime_detail', {id: number, data: detail} );
+});
+
+// Delete
+app.get("/anime/delete/:number", (req, res) => {
+  // 本来は削除の確認ページを表示する
+  // 本来は削除する番号が存在するか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  const index = Number(req.params.number);
+  const detail = anime[index];
+  res.render("anime_delete", { id: index, data: detail });
+});
+
+app.post("/anime/delete/:number", (req, res) => {
+  const index = Number(req.params.number);
+  anime.splice(index, 1); // 配列から削除
+  res.redirect("/anime"); // 一覧へ
+});
+
+// Create
+app.post("/anime", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const id = anime.length + 1;
+  const title = req.body.title;
+  const genre = req.body.genre;
+  const funny = req.body.funny;
+  const delivery = req.body.delivery;
+  const note = req.body.note;
+  anime.push( { id: id, title: title, genre: genre, funny: funny, delivery: delivery, note: note } );
+  console.log( anime );
+  res.render('anime', {data: anime} );
+});
+
+// Edit
+app.get("/anime/edit/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = anime[ number ];
+  res.render('anime_edit', {id: number, data: detail} );
+});
+
+// Update
+app.post("/anime/update/:number", (req, res) => {
+  // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  anime[req.params.number].title = req.body.title;
+  anime[req.params.number].genru = req.body.genru;
+  anime[req.params.number].funny = req.body.funny;
+  anime[req.params.number].delivery = req.body.delivery;
+  anime[req.params.number].note = req.body.note;
+  console.log( anime );
+  res.redirect('/anime' );
+});
+app.post("/anime/delete/:number", (req, res) => {
+  // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  anime[req.params.number].title = req.body.title;
+  anime[req.params.number].genru = req.body.genru;
+  anime[req.params.number].funny = req.body.funny;
+  anime[req.params.number].delivery = req.body.delivery;
+  anime[req.params.number].note = req.body.note;
+  console.log( anime );
+  res.redirect('/anime' );
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

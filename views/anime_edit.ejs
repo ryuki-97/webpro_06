@@ -1,0 +1,23 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= data.title %></title>
+</head>
+<body>
+  <h2><%= data.title %>の編集</h2>
+  <form action="/anime/update/<%= id %>" method="POST">
+    <table>
+      <tr><th>項目</th><th>データ</th></tr>
+      <tr><td>作品名</td><td><input type="text" name="title" value="<%= data.title %>"></td></tr>
+      <tr><td>ID</td><td><input type="text" name="code" value="<%= data.id %>"></td></tr>
+      <tr><td>ジャンル</td><td><input type="text" name="genre" value="<%= data.genre %>"></td></tr>
+      <tr><td>面白さ</td><td><input type="text" name="funny" value="<%= data.funny %>"></td></tr>
+      <tr><td>配信先</td><td><input type="text" name="delivery" value="<%= data.delivery %>"></td></tr>
+      <tr><td>メモ</td><td><input type="text" name="note" value="<%= data.note %>"></td></tr>
+    </table>
+    <input type="submit" value="登録">
+  </form>
+  <a href="/anime/">アニメ一覧に戻る</a>
+</body>
+</html>
